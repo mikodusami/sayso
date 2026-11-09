@@ -1,0 +1,58 @@
+// A short, human-readable index of the API, served at GET /v1.
+// (A full OpenAPI document is a P1 item - see SETUP.md.)
+
+export const API_INDEX = {
+  name: 'Sayso API',
+  version: 'v1',
+  auth: {
+    api_key: 'Authorization: Bearer sk_test_...',
+    demo: 'Authorization: Demo <token from POST /demo/session>',
+    hosted: '?t=<link token> on /v1/hosted/* routes',
+  },
+  conventions: {
+    money: 'Two-decimal strings, e.g. "118.00"',
+    idempotency: 'Send Idempotency-Key on POST to make retries safe',
+    errors: '{ "error": { "type", "message", ... } }',
+  },
+  agent_provider: [
+    'POST /v1/mandates/parse',
+    'POST /v1/mandates',
+    'GET  /v1/mandates/:id',
+    'POST /v1/mandates/:id/revoke',
+    'GET  /v1/merchants/:merchantId/products?q=   (merchantId or "any")',
+    'POST /v1/checks',
+    'POST /v1/checkouts',
+    'GET  /v1/checkouts/:id',
+    'POST /v1/complaints',
+    'GET  /v1/findings',
+    'GET  /v1/liabilities',
+  ],
+  merchant: [
+    'PUT   /v1/products/:sku',
+    'GET   /v1/products?q=',
+    'GET   /v1/orders',
+    'GET   /v1/orders/:id',
+    'POST  /v1/orders/:id/shipments',
+    'POST  /v1/orders/:id/delivered',
+    'GET   /v1/findings',
+    'GET   /v1/findings/:id',
+    'POST  /v1/findings/:id/confirm',
+    'POST  /v1/findings/:id/retry',
+    'POST  /v1/findings/:id/refresh',
+    'POST  /v1/findings/:id/appeal',
+    'GET   /v1/settings',
+    'PATCH /v1/settings',
+  ],
+  any_tenant: ['GET /v1/events', 'POST /v1/webhook-endpoints'],
+  hosted: [
+    'GET  /v1/hosted/mandates/:id',
+    'POST /v1/hosted/mandates/:id/approve',
+    'GET  /v1/hosted/checkouts/:id',
+    'POST /v1/hosted/checkouts/:id/accept',
+    'POST /v1/hosted/checkouts/:id/paypal-order',
+    'POST /v1/hosted/checkouts/:id/capture',
+    'POST /v1/hosted/checkouts/:id/complaints',
+  ],
+  paypal: ['POST /v1/paypal/webhooks/:tenantId'],
+  demo: ['POST /demo/reset', 'GET /demo/state', 'POST /demo/session', 'POST /demo/agent/chat', 'POST /demo/careless-buy', 'POST /demo/fake-paypal/orders/:orderId/approve'],
+}
