@@ -1,0 +1,18 @@
+{
+  "name": "sayso",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sayso: proof of what a shopper asked their AI agent to buy, and fault handling on PayPal when it goes wrong.",
+  "license": "MIT",
+  "workspaces": ["api", "web"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "npm run dev --workspace api & npm run dev --workspace web",
+    "dev:api": "npm run dev --workspace api",
+    "dev:web": "npm run dev --workspace web",
+    "test": "npm test --workspace api",
+    "typecheck": "npm run typecheck --workspace api && npm run typecheck --workspace web",
+    "check:layers": "node tools/check-layers.mjs",
+    "check": "npm run check:layers && npm run typecheck && npm test"
+  }
+}
